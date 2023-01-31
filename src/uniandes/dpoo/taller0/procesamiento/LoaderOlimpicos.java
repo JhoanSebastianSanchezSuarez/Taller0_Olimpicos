@@ -26,6 +26,10 @@ public class LoaderOlimpicos
 		List<Evento> eventos = new ArrayList<>();
 
 		// Abrir el archivo y leerlo línea por línea usando un BufferedReader
+		if(!nombreArchivo.contains("/"))
+		{
+			nombreArchivo = ("./data/"+nombreArchivo);
+		}
 		BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
 		String linea = br.readLine(); // La primera línea del archivo se ignora porque únicamente tiene los títulos de
 										// las columnas

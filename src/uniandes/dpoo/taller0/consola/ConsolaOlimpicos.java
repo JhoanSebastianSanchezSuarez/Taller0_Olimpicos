@@ -10,6 +10,7 @@ import java.util.Map;
 
 import uniandes.dpoo.taller0.modelo.Atleta;
 import uniandes.dpoo.taller0.modelo.Genero;
+import uniandes.dpoo.taller0.modelo.Pais;
 import uniandes.dpoo.taller0.procesamiento.CalculadoraEstadisticas;
 import uniandes.dpoo.taller0.procesamiento.LoaderOlimpicos;
 
@@ -62,7 +63,9 @@ public class ConsolaOlimpicos
 					ejecutarMedallistasPorNacionYGenero();
 				else if (opcion_seleccionada == 12 && calculadora != null)
 					ejecutarPorcentajeMedallistas();
-				else if (opcion_seleccionada == 13)
+				else if (opcion_seleccionada == 13 && calculadora != null)
+					ejecutarPaisRepresentadoAtleta();
+				else if (opcion_seleccionada == 14)
 				{
 					System.out.println("Saliendo de la aplicación ...");
 					continuar = false;
@@ -102,7 +105,8 @@ public class ConsolaOlimpicos
 		System.out.println("10. Consultar el atleta todoterreno");
 		System.out.println("11. Consultar los medallistas por país y género");
 		System.out.println("12. Consultar el porcentaje de atletas que son medallistas");
-		System.out.println("13. Salir de la aplicación\n");
+		System.out.println("13. Consultar el país que representa un atleta");
+		System.out.println("14. Salir de la aplicación\n");
 	}
 
 	/**
@@ -362,7 +366,22 @@ public class ConsolaOlimpicos
 			System.out.println(deporte + ": " + atletas.get(deporte).size() + " atletas");
 		}
 	}
-
+	
+	/**
+	 * Este método le pide al usuario el nombre de un atleta y retorna un print
+	 * con el nombre del país al que representó.
+	 */
+	private void ejecutarPaisRepresentadoAtleta()
+	{
+		System.out.println("\n"+ "Consultar país al que representa un atleta"+"\n");
+		
+		String nombreatl = input("Ingrese el nombre del atleta");
+		Atleta deportista = calculadora.buscarAtleta(nombreatl);
+		Pais pais = deportista.darPais();
+		String rta = pais.darNombre();
+		
+		System.out.println(nombreatl+" representa a " + rta);
+	}
 	/**
 	 * Este método le pide al usuario el nombre de un archivo con información de los
 	 * atletas, lo carga usando la clase LoaderOlimpicos y crea un objeto de tipo
